@@ -30,3 +30,20 @@
 .value {
   font-size: 32px;
 }
+.form {
+  display: flex;
+  align-items: self-start;
+  justify-content: start;
+  gap: 10px;
+  flex-direction: column;
+  width: 600px;
+}
+.form label:first {
+  display: flex;
+  flex-direction: column; /* текст над input */
+  align-items: flex-start; /* вирівняти текст по лівому краю */
+  width: 100%; /* label займатиме всю ширину форми */
+  font-size: 1rem;
+  color: #333;
+  width: 100%;
+}
