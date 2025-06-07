@@ -31,6 +31,8 @@ class Timer {
       if (deltaTime <= 0) {
         clearInterval(this.intervalId);
         this.onTick(convertMs(0));
+        startBtn.disabled = true;
+        datetimePicker.disabled = false;
         return;
       }
 

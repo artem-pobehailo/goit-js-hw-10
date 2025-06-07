@@ -10,25 +10,32 @@ function handleSubmit(event) {
   const { delay, state } = event.target.elements;
   const delayValue = +delay.value;
   const stateValue = state.value;
-  setTimeout(() => {
-    return new Promise((resolve, reject) => {
-      if (stateValue === 'fulfilled') {
-        resolve('fulfilled');
-      } else {
-        reject('rejected');
-      }
-    })
-      .then(delay => {
-        iziToast.success({
-          message: `✅ Fulfilled promise in ${delay}ms`,
-          position: 'topRight',
-        });
-      })
-      .catch(delay => {
-        iziToast.error({
-          message: `❌ Rejected promise in ${delay}ms`,
-          position: 'topRight',
-        });
+
+  createPromise(delayValue, stateValue)
+    .then(delay => {
+      iziToast.success({
+        message: `✅ Fulfilled promise in ${delay}ms`,
+        position: 'topRight',
+        icon: false,
       });
-  }, delayValue);
+    })
+    .catch(delay => {
+      iziToast.error({
+        message: `❌ Rejected promise in ${delay}ms`,
+        position: 'topRight',
+        icon: false,
+      });
+    });
+}
+
+function createPromise(delay, state) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (state === 'fulfilled') {
+        resolve(delay);
+      } else {
+        reject(delay);
+      }
+    }, delay);
+  });
 }
